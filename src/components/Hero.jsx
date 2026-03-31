@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import './Hero.css'
+import ronitPhoto from '../assets/ronit.png'
 
 export default function Hero() {
     const handleScroll = (id) => {
@@ -94,8 +95,7 @@ export default function Hero() {
                 >
                     <div className="avatar-ring">
                         <div className="avatar-placeholder">
-                            {/* TODO: Replace with <img src="your-photo.jpg" alt="Your Name" /> */}
-                            <span>Your Photo</span>
+                            <img src={ronitPhoto} alt="Ronit Kumar" />
                         </div>
                     </div>
                     <div className="avatar-badge">
