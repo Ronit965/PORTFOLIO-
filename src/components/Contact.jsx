@@ -1,12 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiMail, FiMapPin, FiSend, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
+import { FiSend, FiGithub, FiLinkedin, FiTwitter } from 'react-icons/fi'
 import './Contact.css'
 
-const contactInfo = [
-    { Icon: FiMail, label: 'Email', value: 'your@email.com' },   // TODO: your email
-    { Icon: FiMapPin, label: 'Location', value: 'Your City, Country' }, // TODO: your location
-]
 
 const socials = [
     { Icon: FiGithub, href: 'https://github.com/Ronit965', label: 'GitHub' },
@@ -17,16 +13,46 @@ const socials = [
 export default function Contact() {
     const [form, setForm] = useState({ name: '', email: '', message: '' })
     const [sent, setSent] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
 
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-    // TODO: Replace this with your real form submission logic (e.g. EmailJS / Formspree)
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('Form data:', form)
-        setSent(true)
-        setTimeout(() => setSent(false), 3000)
-        setForm({ name: '', email: '', message: '' })
+        setLoading(true)
+        setError('')
+
+        try {
+            const res = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    // TODO: Replace with your Web3Forms Access Key
+                    access_key: '7069403b-0226-4752-9818-9be35dcf672f',
+                    name: form.name,
+                    email: form.email,
+                    message: form.message
+                })
+            })
+
+            const data = await res.json()
+
+            if (res.ok || data.success) {
+                setSent(true)
+                setTimeout(() => setSent(false), 3000)
+                setForm({ name: '', email: '', message: '' })
+            } else {
+                setError(data.message || 'Failed to send message')
+            }
+        } catch (err) {
+            setError('Could not connect to the email service.')
+            console.error(err)
+        }
+        setLoading(false)
     }
 
     return (
@@ -58,19 +84,6 @@ export default function Contact() {
                             or just want to say hello — my inbox is always open!
                         </p>
 
-                        <div className="contact__details">
-                            {contactInfo.map(({ Icon, label, value }) => (
-                                <div key={label} className="contact__detail-row">
-                                    <div className="contact__icon-wrap">
-                                        <Icon size={18} />
-                                    </div>
-                                    <div>
-                                        <span className="contact__detail-label">{label}</span>
-                                        <span className="contact__detail-val">{value}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
 
                         <div className="contact__socials">
                             {socials.map(({ Icon, href, label }) => (
@@ -124,9 +137,10 @@ export default function Contact() {
                             />
                         </div>
 
-                        <button type="submit" className={`btn btn-primary send-btn ${sent ? 'sent' : ''}`}>
-                            {sent ? '✓ Message Sent!' : <><FiSend /> Send Message</>}
+                        <button type="submit" className={`btn btn-primary send-btn ${sent ? 'sent' : ''}`} disabled={loading}>
+                            {loading ? 'Sending...' : sent ? '✓ Message Sent!' : <><FiSend /> Send Message</>}
                         </button>
+                        {error && <p className="contact__error" style={{ color: '#ff4a4a', marginTop: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</p>}
                     </motion.form>
                 </div>
             </div>
