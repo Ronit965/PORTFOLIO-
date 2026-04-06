@@ -15,8 +15,8 @@ export default function Footer() {
             <div className="footer__line" />
             <div className="container footer__inner">
                 <p className="footer__copy">
-                    © {year} <span className="text-gradient">Your Name</span>. {/* TODO: your name */}
-                    Made with <FiHeart className="heart-icon" /> and a lot of coffee.
+                    © {year} <span className="text-gradient">Ronit Kumar</span>. {/* TODO: your name */}
+                    <FiHeart className="heart-icon" />
                 </p>
 
                 <div className="footer__socials">
