@@ -107,7 +107,7 @@ export default function Projects() {
                     transition={{ delay: 0.3 }}
                 >
                     {/* TODO: Replace with your GitHub profile URL */}
-                    <a href="#" target="_blank" rel="noreferrer" className="btn btn-outline">
+                    <a href="https://github.com/Ronit965" target="_blank" rel="noreferrer" className="btn btn-outline">
                         <FiGithub /> View All on GitHub
                     </a>
                 </motion.div>
