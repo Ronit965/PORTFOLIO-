@@ -6,12 +6,12 @@ import './Projects.css'
 const projects = [
     {
         id: 1,
-        title: 'APPLE',
+        title: 'AI DESIGN GENERATOR',
         description:
             'Implemented a clean, minimalist UI/UX following Apple’s premium design language and aesthetic standards.',
         tags: ['React', 'Css', 'Figma', 'Motion'],
         github: 'https://github.com/Ronit965/Apple',   // GitHub repo
-        live: 'https://apple-website-peach-psi.vercel.app/',   // Live demo
+        live: 'https://ai-design-generator-ihij.vercel.app/',   // Live demo
         gradient: 'linear-gradient(135deg, rgba(191,64,191,0.15), rgba(0,245,255,0.05))',
     },
     {
