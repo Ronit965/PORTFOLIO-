@@ -10,7 +10,7 @@ const projects = [
         description:
             'Implemented a clean, minimalist UI/UX following AI DESIGN GENERATOR and aesthetic standards.',
         tags: ['React', 'Django', 'Css', 'Figma', 'Motion'],
-        github: 'https://github.com/Ronit965?tab=repositories',   // GitHub repo
+        github: 'https://github.com/Ronit965/Ai-Design-generator',   // GitHub repo
         live: 'https://ai-design-generator-ihij.vercel.app/',   // Live demo
         gradient: 'linear-gradient(135deg, rgba(191,64,191,0.15), rgba(0,245,255,0.05))',
     },
