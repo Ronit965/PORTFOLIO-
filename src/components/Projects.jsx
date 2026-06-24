@@ -8,7 +8,7 @@ const projects = [
         id: 1,
         title: 'AI DESIGN GENERATOR',
         description:
-            'Implemented a clean, minimalist UI/UX following Apple’s premium design language and aesthetic standards.',
+            'Implemented a clean, minimalist UI/UX following AI DESIGN GENERATOR and aesthetic standards.',
         tags: ['React', 'Css', 'Figma', 'Motion'],
         github: 'https://github.com/Ronit965/Apple',   // GitHub repo
         live: 'https://ai-design-generator-ihij.vercel.app/',   // Live demo
